@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='开源Springboot项目-sql之父 项目引用依赖 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; FreeMarker 是一款模板引擎：即一种基于模板和要改变的数据，并用来生成输出文本(HTML 网页，电子邮件，配置文件，源代码等)的通用工具。它不是面向最终用户的，而是一个 Java 类库，是一款程序员可以嵌入他们所开发产品的组件。 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.xiaoymin&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;knife4j-spring-boot-starter&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.0.3&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 生成接口文档使用的依赖库 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;druid&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.2.12&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 阿里巴巴出的数据库连接池 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;easyexcel&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.1.1&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 阿里巴巴出的好用的excel库 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.commons&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;commons-lang3&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; java工具的增强版 2.项目主要结构 学习的地方： 1.注解的使用：自定义一个权限检测注解
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 @Target(ElementType.'><title>开源Springboot项目 Sql之父</title>
+
+<link rel='canonical' href='https://wangchenguang123.github.io/p/%E5%BC%80%E6%BA%90springboot%E9%A1%B9%E7%9B%AE-sql%E4%B9%8B%E7%88%B6/'>
+
+<link rel="stylesheet" href="/scss/style.min.5a8e892f6fa14515e9065eee1f5d2e05302606ec7f11750b2fb95198f9cdcbfd.css"><meta property='og:title' content='开源Springboot项目 Sql之父'>
+<meta property='og:description' content='开源Springboot项目-sql之父 项目引用依赖 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; FreeMarker 是一款模板引擎：即一种基于模板和要改变的数据，并用来生成输出文本(HTML 网页，电子邮件，配置文件，源代码等)的通用工具。它不是面向最终用户的，而是一个 Java 类库，是一款程序员可以嵌入他们所开发产品的组件。 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.xiaoymin&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;knife4j-spring-boot-starter&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.0.3&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 生成接口文档使用的依赖库 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;druid&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.2.12&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 阿里巴巴出的数据库连接池 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;easyexcel&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.1.1&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 阿里巴巴出的好用的excel库 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.commons&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;commons-lang3&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; java工具的增强版 2.项目主要结构 学习的地方： 1.注解的使用：自定义一个权限检测注解
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 @Target(ElementType.'>
+<meta property='og:url' content='https://wangchenguang123.github.io/p/%E5%BC%80%E6%BA%90springboot%E9%A1%B9%E7%9B%AE-sql%E4%B9%8B%E7%88%B6/'>
+<meta property='og:site_name' content='Example Site'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-05-19T21:24:35&#43;08:00'/><meta property='article:modified_time' content='2023-05-19T21:24:35&#43;08:00'/>
+<meta name="twitter:title" content="开源Springboot项目 Sql之父">
+<meta name="twitter:description" content="开源Springboot项目-sql之父 项目引用依赖 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; FreeMarker 是一款模板引擎：即一种基于模板和要改变的数据，并用来生成输出文本(HTML 网页，电子邮件，配置文件，源代码等)的通用工具。它不是面向最终用户的，而是一个 Java 类库，是一款程序员可以嵌入他们所开发产品的组件。 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.xiaoymin&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;knife4j-spring-boot-starter&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.0.3&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 生成接口文档使用的依赖库 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;druid&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.2.12&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 阿里巴巴出的数据库连接池 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;easyexcel&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.1.1&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 阿里巴巴出的好用的excel库 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.commons&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;commons-lang3&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; java工具的增强版 2.项目主要结构 学习的地方： 1.注解的使用：自定义一个权限检测注解
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 @Target(ElementType.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/head_hu75571e1417c252b48c2386527422b66b_39172_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Example Site</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://wangchenguang123.github.io/" selected>English</option>
+                        
+                            <option value="https://wangchenguang123.github.io/zh-cn/" >中文</option>
+                        
+                            <option value="https://wangchenguang123.github.io/ar/" >عربي</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%BC%80%E6%BA%90springboot%E9%A1%B9%E7%9B%AE-sql%E4%B9%8B%E7%88%B6/">开源Springboot项目 Sql之父</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 19, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    6 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="开源springboot项目-sql之父">开源Springboot项目-sql之父</h1>
+<ol>
+<li>项目引用依赖</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;dependency&gt;
+</span></span><span class="line"><span class="cl">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+</span></span><span class="line"><span class="cl">    &lt;artifactId&gt;spring-boot-starter-freemarker&lt;/artifactId&gt;
+</span></span><span class="line"><span class="cl">&lt;/dependency&gt;
+</span></span><span class="line"><span class="cl">FreeMarker 是一款模板引擎：即一种基于模板和要改变的数据，并用来生成输出文本(HTML 网页，电子邮件，配置文件，源代码等)的通用工具。它不是面向最终用户的，而是一个 Java 类库，是一款程序员可以嵌入他们所开发产品的组件。
+</span></span><span class="line"><span class="cl">&lt;dependency&gt;
+</span></span><span class="line"><span class="cl">    &lt;groupId&gt;com.github.xiaoymin&lt;/groupId&gt;
+</span></span><span class="line"><span class="cl">    &lt;artifactId&gt;knife4j-spring-boot-starter&lt;/artifactId&gt;
+</span></span><span class="line"><span class="cl">    &lt;version&gt;3.0.3&lt;/version&gt;
+</span></span><span class="line"><span class="cl">&lt;/dependency&gt;
+</span></span><span class="line"><span class="cl">生成接口文档使用的依赖库
+</span></span><span class="line"><span class="cl">&lt;dependency&gt;
+</span></span><span class="line"><span class="cl">    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+</span></span><span class="line"><span class="cl">    &lt;artifactId&gt;druid&lt;/artifactId&gt;
+</span></span><span class="line"><span class="cl">    &lt;version&gt;1.2.12&lt;/version&gt;
+</span></span><span class="line"><span class="cl">&lt;/dependency&gt;
+</span></span><span class="line"><span class="cl">阿里巴巴出的数据库连接池
+</span></span><span class="line"><span class="cl">&lt;dependency&gt;
+</span></span><span class="line"><span class="cl">    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+</span></span><span class="line"><span class="cl">    &lt;artifactId&gt;easyexcel&lt;/artifactId&gt;
+</span></span><span class="line"><span class="cl">    &lt;version&gt;3.1.1&lt;/version&gt;
+</span></span><span class="line"><span class="cl">&lt;/dependency&gt;
+</span></span><span class="line"><span class="cl">阿里巴巴出的好用的excel库
+</span></span><span class="line"><span class="cl">&lt;dependency&gt;
+</span></span><span class="line"><span class="cl">    &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
+</span></span><span class="line"><span class="cl">    &lt;artifactId&gt;commons-lang3&lt;/artifactId&gt;
+</span></span><span class="line"><span class="cl">&lt;/dependency&gt;
+</span></span><span class="line"><span class="cl">java工具的增强版
+</span></span><span class="line"><span class="cl">        
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.项目主要结构
+学习的地方：
+1.注解的使用：自定义一个权限检测注解</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@Target(ElementType.METHOD) 函数级别的
+</span></span><span class="line"><span class="cl">@Retention(RetentionPolicy.RUNTIME) 运行时
+</span></span><span class="line"><span class="cl">public @interface AuthCheck {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 有任何一个角色
+</span></span><span class="line"><span class="cl">     *
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    String[] anyRole() default &#34;&#34;;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 必须有某个角色
+</span></span><span class="line"><span class="cl">     *
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    String mustRole() default &#34;&#34;;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.使用Aop进行权限控制</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@Around(&#34;@annotation(authCheck)&#34;)
+</span></span><span class="line"><span class="cl"> public Object doInterceptor(ProceedingJoinPoint joinPoint, AuthCheck authCheck) throws Throwable {
+</span></span><span class="line"><span class="cl">        List&lt;String&gt; anyRole = Arrays.stream(authCheck.anyRole()).filter(StringUtils::isNotBlank).collect(Collectors.toList());
+</span></span><span class="line"><span class="cl">        String mustRole = authCheck.mustRole();
+</span></span><span class="line"><span class="cl">        RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
+</span></span><span class="line"><span class="cl">        HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
+</span></span><span class="line"><span class="cl">        // 当前登录用户
+</span></span><span class="line"><span class="cl">        User user = userService.getLoginUser(request);
+</span></span><span class="line"><span class="cl">        // 拥有任意权限即通过
+</span></span><span class="line"><span class="cl">        /*
+</span></span><span class="line"><span class="cl">        下列为代码逻辑可以更改  
+</span></span><span class="line"><span class="cl">        */
+</span></span><span class="line"><span class="cl">        if (CollectionUtils.isNotEmpty(anyRole)) {
+</span></span><span class="line"><span class="cl">            String userRole = user.getUserRole();
+</span></span><span class="line"><span class="cl">            if (!anyRole.contains(userRole)) {
+</span></span><span class="line"><span class="cl">                throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        // 必须有所有权限才通过
+</span></span><span class="line"><span class="cl">        if (StringUtils.isNotBlank(mustRole)) {
+</span></span><span class="line"><span class="cl">            String userRole = user.getUserRole();
+</span></span><span class="line"><span class="cl">            if (!mustRole.equals(userRole)) {
+</span></span><span class="line"><span class="cl">                throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        // 通过权限校验，放行
+</span></span><span class="line"><span class="cl">        return joinPoint.proceed();
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> @Around(&#34;execution(* com.yupi.sqlfather.controller.*.*(..))&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.全局配置
+主要配置FreeMarker,Knife4j和MybatisPlus具体配置内容可根据需要进行百度
+下面展示跨域配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@Configuration
+</span></span><span class="line"><span class="cl">public class CorsConfig implements WebMvcConfigurer {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    @Override
+</span></span><span class="line"><span class="cl">    public void addCorsMappings(CorsRegistry registry) {
+</span></span><span class="line"><span class="cl">        // 覆盖所有请求
+</span></span><span class="line"><span class="cl">        registry.addMapping(&#34;/**&#34;)
+</span></span><span class="line"><span class="cl">                // 允许发送 Cookie
+</span></span><span class="line"><span class="cl">                .allowCredentials(true)
+</span></span><span class="line"><span class="cl">                // 放行哪些域名（必须用 patterns，否则 * 会和 allowCredentials 冲突）
+</span></span><span class="line"><span class="cl">                .allowedOriginPatterns(&#34;*&#34;)
+</span></span><span class="line"><span class="cl">                .allowedMethods(&#34;GET&#34;, &#34;POST&#34;, &#34;PUT&#34;, &#34;DELETE&#34;, &#34;OPTIONS&#34;)
+</span></span><span class="line"><span class="cl">                .allowedHeaders(&#34;*&#34;)
+</span></span><span class="line"><span class="cl">                .exposedHeaders(&#34;*&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>针对每一个配置都需要写@Configuration才能注入到SpringBoot项目当中
+4.通用返回类配置
+实现一个通用返回类，符合RestfulApi风格的接口
+定义code,data和返回信息，对于data需要进行泛型处理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@Data lomok风格自动生成Get和Set
+</span></span><span class="line"><span class="cl">public class BaseResponse&lt;T&gt; implements Serializable {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    private int code;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    private T data;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    private String message;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public BaseResponse(int code, T data, String message) {
+</span></span><span class="line"><span class="cl">        this.code = code;
+</span></span><span class="line"><span class="cl">        this.data = data;
+</span></span><span class="line"><span class="cl">        this.message = message;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public BaseResponse(int code, T data) {
+</span></span><span class="line"><span class="cl">        this(code, data, &#34;&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public BaseResponse(ErrorCode errorCode) {
+</span></span><span class="line"><span class="cl">        this(errorCode.getCode(), null, errorCode.getMessage());
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">上述代码中使用的Errorcode则是一个枚举类，枚举可能发生的错误代码和提示信息
+</span></span><span class="line"><span class="cl">public enum ErrorCode {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    SUCCESS(0, &#34;ok&#34;),
+</span></span><span class="line"><span class="cl">    PARAMS_ERROR(40000, &#34;请求参数错误&#34;),
+</span></span><span class="line"><span class="cl">    NOT_LOGIN_ERROR(40100, &#34;未登录&#34;),
+</span></span><span class="line"><span class="cl">    NO_AUTH_ERROR(40101, &#34;无权限&#34;),
+</span></span><span class="line"><span class="cl">    NOT_FOUND_ERROR(40400, &#34;请求数据不存在&#34;),
+</span></span><span class="line"><span class="cl">    FORBIDDEN_ERROR(40300, &#34;禁止访问&#34;),
+</span></span><span class="line"><span class="cl">    SYSTEM_ERROR(50000, &#34;系统内部异常&#34;),
+</span></span><span class="line"><span class="cl">    OPERATION_ERROR(50001, &#34;操作失败&#34;);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 状态码
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    private final int code;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 信息
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    private final String message;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ErrorCode(int code, String message) {
+</span></span><span class="line"><span class="cl">        this.code = code;
+</span></span><span class="line"><span class="cl">        this.message = message;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public int getCode() {
+</span></span><span class="line"><span class="cl">        return code;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public String getMessage() {
+</span></span><span class="line"><span class="cl">        return message;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">分页也需要一个单独的类来进行控制，其中主要包含属性为页号，页面大小，总数等等
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">定义一个返回的工具类，工具类中主要实现以BaseRespose为对象的方法，
+</span></span><span class="line"><span class="cl">public class ResultUtils {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 成功
+</span></span><span class="line"><span class="cl">     *
+</span></span><span class="line"><span class="cl">     * @param data
+</span></span><span class="line"><span class="cl">     * @param &lt;T&gt;
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    public static &lt;T&gt; BaseResponse&lt;T&gt; success(T data) {
+</span></span><span class="line"><span class="cl">        return new BaseResponse&lt;&gt;(0, data, &#34;ok&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 失败
+</span></span><span class="line"><span class="cl">     *
+</span></span><span class="line"><span class="cl">     * @param errorCode
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    public static BaseResponse error(ErrorCode errorCode) {
+</span></span><span class="line"><span class="cl">        return new BaseResponse&lt;&gt;(errorCode);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 失败
+</span></span><span class="line"><span class="cl">     *
+</span></span><span class="line"><span class="cl">     * @param code
+</span></span><span class="line"><span class="cl">     * @param message
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    public static BaseResponse error(int code, String message) {
+</span></span><span class="line"><span class="cl">        return new BaseResponse(code, null, message);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /**
+</span></span><span class="line"><span class="cl">     * 失败
+</span></span><span class="line"><span class="cl">     *
+</span></span><span class="line"><span class="cl">     * @param errorCode
+</span></span><span class="line"><span class="cl">     * @return
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    public static BaseResponse error(ErrorCode errorCode, String message) {
+</span></span><span class="line"><span class="cl">        return new BaseResponse(errorCode.getCode(), null, message);
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5.全局异常配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">自定义异常类，自定义的异常类主要继承RuntimeException
+</span></span><span class="line"><span class="cl">public class BusinessException extends RuntimeException {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    private final int code;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public BusinessException(int code, String message) {
+</span></span><span class="line"><span class="cl">        super(message);
+</span></span><span class="line"><span class="cl">        this.code = code;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public BusinessException(ErrorCode errorCode) {
+</span></span><span class="line"><span class="cl">        super(errorCode.getMessage());
+</span></span><span class="line"><span class="cl">        this.code = errorCode.getCode();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public BusinessException(ErrorCode errorCode, String message) {
+</span></span><span class="line"><span class="cl">        super(message);
+</span></span><span class="line"><span class="cl">        this.code = errorCode.getCode();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public int getCode() {
+</span></span><span class="line"><span class="cl">        return code;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">定义全局异常处理方法
+</span></span><span class="line"><span class="cl">@RestControllerAdvice 在捕获各种异常是使用
+</span></span><span class="line"><span class="cl">@Slf4j
+</span></span><span class="line"><span class="cl">public class GlobalExceptionHandler {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    @ExceptionHandler(BusinessException.class) 在出现异常时使用用户自定义异常类进行处理
+</span></span><span class="line"><span class="cl">    public BaseResponse&lt;?&gt; businessExceptionHandler(BusinessException e) {
+</span></span><span class="line"><span class="cl">        log.error(&#34;businessException: &#34; + e.getMessage(), e);
+</span></span><span class="line"><span class="cl">        return ResultUtils.error(e.getCode(), e.getMessage());
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    @ExceptionHandler(RuntimeException.class) 运行时异常，中断，并报错。
+</span></span><span class="line"><span class="cl">    public BaseResponse&lt;?&gt; runtimeExceptionHandler(RuntimeException e) {
+</span></span><span class="line"><span class="cl">        log.error(&#34;runtimeException&#34;, e);````
+</span></span><span class="line"><span class="cl">        return ResultUtils.error(ErrorCode.SYSTEM_ERROR, e.getMessage());
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>6.业务逻辑学习</p>
+<ul>
+<li><code>StringUtils.isAnyBlank </code>只要有一个为空则显示为True,所以可以放到检测用户登录时进行校验</li>
+<li><code>synchronized (userAccount.intern()) {}</code>是为了确保在synchronized代码块中对相同userAccount值的锁定是有效的。通过将userAccount字符串调用intern()方法，确保获取的字符串是字符串池中的引用，从而使得不同线程可以正确地对相同userAccount值进行锁定和同步操作。</li>
+<li><code> String encryptPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());</code>MD5加密算法，加密用户名密码。</li>
+<li><code>// 3. 记录用户的登录态 request.getSession().setAttribute(USER_LOGIN_STATE, user);</code> 记住用户的登陆状态</li>
+<li>获取枚举类中的值列表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    public static List&lt;String&gt; getValues() {
+</span></span><span class="line"><span class="cl">        return Arrays.stream(values()).map(FieldTypeEnum::getValue).collect(Collectors.toList());
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>BeanUtils.copyProperties(user, userVO) </code> 源对象和目标对象。它将源对象中的属性值复制到目标对象中对应的属性上，通过属性名称进行匹配。属性名称和类型必须在源对象和目标对象中相匹配，否则会抛出异常。</li>
+<li><code>StringUtils.isNotBlank(***)</code> 不为空 对于字符串的判断可以多用已完成的工具，避免重复造轮子还不准，上述主要使用StringUtils</li>
+<li><code>Optional.ofNullable</code> 判断对象是否为空</li>
+<li>针对工厂模式的运用也是主要的特色之一，针对随机，递增，默认等方式都实现了一个数据生成器接口，而工厂模式，获取实现了这个数据生成器接口的实例。</li>
+<li>public static SQLDialect getDialect(String className) {
+SQLDialect dialect = DIALECT_POOL.get(className);
+if (null == dialect) {
+synchronized (className.intern()) {
+dialect = DIALECT_POOL.computeIfAbsent(className,
+key -&gt; {
+try {
+return (SQLDialect) Class.forName(className).newInstance();
+} catch (Exception e) {
+throw new BusinessException(ErrorCode.SYSTEM_ERROR);
+}
+});
+}
+}
+return dialect;
+}
+上述是一个单例模式的实现，运用在实际项目中</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">* 主要需要理解到DTO的设计，不要一直使用最初的实体类，因为可能会有很多废弃的属性没有实际作用，
+</span></span><span class="line"><span class="cl">* 内部类的设计
+</span></span><span class="line"><span class="cl">* 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>@Data
+public class JavaObjectGenerateDTO {</p>
+<pre><code>/**
+ * 类名
+ */
+private String className;
+
+/**
+ * 对象名
+ */
+private String objectName;
+
+/**
+ * 列信息列表
+ */
+private List&lt;FieldDTO&gt; fieldList;
+
+/**
+ * 列信息
+ */
+@Data
+public static class FieldDTO {
+    /**
+     * set 方法名
+     */
+    private String setMethod;
+
+    /**
+     * 值
+     */
+    private String value;
+}
+</code></pre>
+<p>}</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">* 枚举类的应用
+</span></span><span class="line"><span class="cl">* 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>public enum MockTypeEnum {</p>
+<pre><code>NONE(&quot;不模拟&quot;),
+INCREASE(&quot;递增&quot;),
+FIXED(&quot;固定&quot;),
+RANDOM(&quot;随机&quot;),
+RULE(&quot;规则&quot;),
+DICT(&quot;词库&quot;);
+
+private final String value;
+
+MockTypeEnum(String value) {
+    this.value = value;
+}
+
+/**
+ * 获取值列表
+ *
+ * @return
+ */
+public static List&lt;String&gt; getValues() {
+    return Arrays.stream(values()).map(MockTypeEnum::getValue).collect(Collectors.toList());
+}
+
+/**
+ * 根据 value 获取枚举
+ *
+ * @param value
+ * @return
+ */
+public static MockTypeEnum getEnumByValue(String value) {
+    if (StringUtils.isBlank(value)) {
+        return null;
+    }
+    for (MockTypeEnum mockTypeEnum : MockTypeEnum.values()) {
+        if (mockTypeEnum.value.equals(value)) {
+            return mockTypeEnum;
+        }
+    }
+    return null;
+}
+
+public String getValue() {
+    return value;
+}
+</code></pre>
+<p>}</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">* 门面模式使用，向客户端提供一个高层次接口，避免客户端大量调用子系统使整个系统的耦合性高。
+</span></span><span class="line"><span class="cl">* 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>public static GenerateVO generateAll(TableSchema tableSchema) {
+    // 校验
+    validSchema(tableSchema);
+    SqlBuilder sqlBuilder = new SqlBuilder();
+    // 构造建表 SQL
+    String createSql = sqlBuilder.buildCreateTableSql(tableSchema);
+    int mockNum = tableSchema.getMockNum();
+    // 生成模拟数据
+    List&lt;Map&lt;String, Object&gt;&gt; dataList = DataBuilder.generateData(tableSchema, mockNum);
+    // 生成插入 SQL
+    String insertSql = sqlBuilder.buildInsertSql(tableSchema, dataList);
+    // 生成数据 json
+    String dataJson = JsonBuilder.buildJson(dataList);
+    // 生成 java 实体代码
+    String javaEntityCode = JavaCodeBuilder.buildJavaEntityCode(tableSchema);
+    // 生成 java 对象代码
+    String javaObjectCode = JavaCodeBuilder.buildJavaObjectCode(tableSchema, dataList);
+    // 生成 typescript 类型代码
+    String typescriptTypeCode = FrontendCodeBuilder.buildTypeScriptTypeCode(tableSchema);
+    // 封装返回
+    GenerateVO generateVO = new GenerateVO();
+    generateVO.setTableSchema(tableSchema);
+    generateVO.setCreateSql(createSql);
+    generateVO.setDataList(dataList);
+    generateVO.setInsertSql(insertSql);
+    generateVO.setDataJson(dataJson);
+    generateVO.setJavaEntityCode(javaEntityCode);
+    generateVO.setJavaObjectCode(javaObjectCode);
+    generateVO.setTypescriptTypeCode(typescriptTypeCode);
+    return generateVO;
+}
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">* `CollectionUtils.isEmpty(dataList)` 判断列表是否为空或
+</span></span><span class="line"><span class="cl">* `DateUtils.parseDate(str, DATE_PATTERNS);` 第二个参数为一个字符串列表
+</span></span><span class="line"><span class="cl">*  `public static &lt;T&gt; BaseResponse&lt;T&gt; success(T data) {
+</span></span><span class="line"><span class="cl">        return new BaseResponse&lt;&gt;(0, data, &#34;ok&#34;);
+</span></span><span class="line"><span class="cl">    }`对于泛型的使用
+</span></span><span class="line"><span class="cl">*
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Example Site
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
