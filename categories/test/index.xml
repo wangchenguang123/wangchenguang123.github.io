@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>111 on WCG的Blog</title>
-        <link>https://wangchenguang123.github.io/categories/111/</link>
-        <description>Recent content in 111 on WCG的Blog</description>
+        <title>Test on WCG的Blog</title>
+        <link>https://wangchenguang123.github.io/categories/test/</link>
+        <description>Recent content in Test on WCG的Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 19 May 2023 22:15:17 +0800</lastBuildDate><atom:link href="https://wangchenguang123.github.io/categories/111/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 19 May 2023 22:15:17 +0800</lastBuildDate><atom:link href="https://wangchenguang123.github.io/categories/test/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo博客提交</title>
         <link>https://wangchenguang123.github.io/p/hugo%E5%8D%9A%E5%AE%A2%E6%8F%90%E4%BA%A4/</link>
         <pubDate>Fri, 19 May 2023 22:15:17 +0800</pubDate>
         
         <guid>https://wangchenguang123.github.io/p/hugo%E5%8D%9A%E5%AE%A2%E6%8F%90%E4%BA%A4/</guid>
-        <description>&lt;h1 id=&#34;提交hugo&#34;&gt;提交Hugo&lt;/h1&gt;
+        <description>&lt;img src="https://wangchenguang123.github.io/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Hugo博客提交" /&gt;&lt;h1 id=&#34;提交hugo&#34;&gt;提交Hugo&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;启动博客&lt;/li&gt;
 &lt;/ol&gt;
