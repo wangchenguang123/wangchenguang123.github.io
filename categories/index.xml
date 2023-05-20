@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Categories on Example Site</title>
+        <title>Categories on WCG的Blog</title>
         <link>https://wangchenguang123.github.io/categories/</link>
-        <description>Recent content in Categories on Example Site</description>
+        <description>Recent content in Categories on WCG的Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language><atom:link href="https://wangchenguang123.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+        <language>zh-cn</language>
+        <lastBuildDate>Fri, 19 May 2023 22:15:17 +0800</lastBuildDate><atom:link href="https://wangchenguang123.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>111</title>
+        <link>https://wangchenguang123.github.io/categories/111/</link>
+        <pubDate>Fri, 19 May 2023 22:15:17 +0800</pubDate>
+        
+        <guid>https://wangchenguang123.github.io/categories/111/</guid>
+        <description></description>
+        </item>
+        
     </channel>
 </rss>
