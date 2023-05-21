@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Posts on WCG的Blog</title>
+        <title>Posts on WCG-记录代码生活</title>
         <link>https://wangchenguang123.github.io/post/</link>
-        <description>Recent content in Posts on WCG的Blog</description>
+        <description>Recent content in Posts on WCG-记录代码生活</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <lastBuildDate>Fri, 19 May 2023 22:15:17 +0800</lastBuildDate><atom:link href="https://wangchenguang123.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
@@ -96,7 +96,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;![](images.jpg)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description>
+&lt;/div&gt;&lt;p&gt;6.stack主题配置问题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;针对&lt;strong&gt;目录主题&lt;/strong&gt;参照你自己的项目在themes文件夹下的exampleSite文件夹中的content文件夹下的categories文件夹中的内容，如果你想配置自己的目录，需要把对应的md文件移动到你Hugo文件夹的主目录下的content文件夹中，文件夹的层级需要和post文件夹相同，同时针对categories文件夹中的md文件名，不可修改，需要保证为_index.md，这样其中的内容才可以生效。&lt;/li&gt;
+&lt;li&gt;针对&lt;strong&gt;archives归档&lt;/strong&gt;按照上述文件夹路径占到page文件夹，在page文件夹中找到archives文件夹，其中的操作和目录相同，&lt;/li&gt;
+&lt;li&gt;针对&lt;strong&gt;搜索功能&lt;/strong&gt;也是一样的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;特殊注意这些md文件尽可能不要自己写因为自己写的内容可能和stack的主题不符导致部分功能不可用其次在想给自己的md文件加入特色图片的时候首先要注意图片和md文件在相同文件夹下其次特别注意在contentpost个人文件夹其中改的md文件名一定不要改一定是indexmd否则图片可能加不进去&#34;&gt;特殊注意这些md文件尽可能不要自己写，因为自己写的内容可能和stack的主题不符导致部分功能不可用，其次，在想给自己的md文件加入特色图片的时候，首先要注意图片和md文件在相同文件夹下，其次特别注意，在content/post/个人文件夹/其中改的md文件名一定不要改，一定是index.md否则图片可能加不进去！！！&lt;/h2&gt;
+</description>
         </item>
         <item>
         <title>开源Springboot项目 Sql之父</title>

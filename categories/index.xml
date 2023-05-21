@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Categories on WCG的Blog</title>
+        <title>Categories on WCG-记录代码生活</title>
         <link>https://wangchenguang123.github.io/categories/</link>
-        <description>Recent content in Categories on WCG的Blog</description>
+        <description>Recent content in Categories on WCG-记录代码生活</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <lastBuildDate>Fri, 19 May 2023 22:15:17 +0800</lastBuildDate><atom:link href="https://wangchenguang123.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Test</title>
-        <link>https://wangchenguang123.github.io/categories/test/</link>
+        <title>个人博客创建</title>
+        <link>https://wangchenguang123.github.io/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%88%9B%E5%BB%BA/</link>
         <pubDate>Fri, 19 May 2023 22:15:17 +0800</pubDate>
         
-        <guid>https://wangchenguang123.github.io/categories/test/</guid>
+        <guid>https://wangchenguang123.github.io/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%88%9B%E5%BB%BA/</guid>
         <description></description>
         </item>
         <item>

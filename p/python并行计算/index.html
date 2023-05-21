@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/scss/style.min.5a8e892f6fa14515e9065eee1f5d2e05302606ec7f11750b2fb95198f9cdcbfd.css"><meta property='og:title' content='Python并行计算'>
 <meta property='og:description' content='笔记python并行 多线程、多进程、协程 1.多进程 每一个逻辑控制流都是一个进程，由内核来调度和维护。有独立的虚拟地址空间，数据是分开的，共享复杂，需要用IPC进行通信。占用内存较多，可靠性高 2.多线程 运行在一个单一进程上下文的逻辑流，由内核调度，多线程共享进程数据，共享简单，占用内存低，可靠性较低 3.协程 一种用户态的轻量级线程，协程的调度完全由用户控制。协程拥有自己的寄存器上下文和栈。协程调度切换时，先保存再恢复。 直接操作栈则基本没有内核切换的开销，可以不加锁的访问全局变量，所以上下文的切换非常快。 1 2 3 loop = asyncio.get_event_loop() 事件 tasks = [loop.create_task(func(*arg)) for arg in ____] 任务 loop.run_until_complete(asyncio.wait(tasks)) 执行 通过遍历tasks 后可获得返回值 task.result() asyncio.gather()方法也可以 * 自动将函数列表封装成了协程任务 done 为已完成的协程任务列表，pending 为超时未完成的协程任务类别，需通过task.result()方法可以获取每个协程任务返回的结果； 而asyncio.gather 返回的是所有已完成协程任务的 result，不需要再进行调用或其他操作，就可以得到全部结果。 在python3.7之后 利用asyncio.run可以代替上面3步 python中的多线程 1.GIL GIL（全局解释锁）不是python的特性和Lock不是一个层面的概念，在实现Cpython引入的一个概念。具备一定的优势： 1.在单线程任务中更快 2.在多线程任务中，对于I/O密集型程序运行更快。 一定的缺陷：1. 对于CPU密集型任务，需要进行用C语言包来实现。2、使python的多线程并不是真正意义的多线程 补充： 计算密集型：要进行大量的数值计算，例如进行上亿的数字计算、计算圆周率、对视频进行高清解码等等。这种计算密集型任务虽然也可以用多任务完成，但是花费的主要时间在任务切换的时间，此时CPU执行任务的效率比较低。 IO密集型：涉及到网络请求(time.sleep())、磁盘IO的任务都是IO密集型任务，这类任务的特点是CPU消耗很少，任务的大部分时间都在等待IO操作完成（因为IO的速度远远低于CPU和内存的速度）。对于IO密集型任务，任务越多，CPU效率越高，但也有一个限度。 2.GIL的运行过程 线程拿到GIL 执行逻辑代码，达到check_interval* 释放当前线程的GIL 所有线程竞争GIL 竞争到的线程又从第一步开始执行 补充：对于GIL的释放情景。 1.当前线程执行超时，自动释放。 2.当前线程执行阻塞操作时会自动释放。 3.执行完成时释放 3.GIL存在的问题 看似并行，实则不然，根据上述的运行过程可以看出，虽然是多线程但是线程之间的运行仍然是具有先后顺序的，并不是同时进行的。（一个进程中有一把全局解释锁，锁住线程） 可以利用多进程 &#43; 协程来完成相应业务场景 python中的多进程 1. multiprocessing multiprocessing 模块在python中的多进程模块 1.'>
 <meta property='og:url' content='https://wangchenguang123.github.io/p/python%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/'>
-<meta property='og:site_name' content='WCG的Blog'>
+<meta property='og:site_name' content='WCG-记录代码生活'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Python' /><meta property='article:published_time' content='2022-07-06T21:22:51&#43;08:00'/><meta property='article:modified_time' content='2022-07-06T21:22:51&#43;08:00'/>
 <meta name="twitter:title" content="Python并行计算">
 <meta name="twitter:description" content="笔记python并行 多线程、多进程、协程 1.多进程 每一个逻辑控制流都是一个进程，由内核来调度和维护。有独立的虚拟地址空间，数据是分开的，共享复杂，需要用IPC进行通信。占用内存较多，可靠性高 2.多线程 运行在一个单一进程上下文的逻辑流，由内核调度，多线程共享进程数据，共享简单，占用内存低，可靠性较低 3.协程 一种用户态的轻量级线程，协程的调度完全由用户控制。协程拥有自己的寄存器上下文和栈。协程调度切换时，先保存再恢复。 直接操作栈则基本没有内核切换的开销，可以不加锁的访问全局变量，所以上下文的切换非常快。 1 2 3 loop = asyncio.get_event_loop() 事件 tasks = [loop.create_task(func(*arg)) for arg in ____] 任务 loop.run_until_complete(asyncio.wait(tasks)) 执行 通过遍历tasks 后可获得返回值 task.result() asyncio.gather()方法也可以 * 自动将函数列表封装成了协程任务 done 为已完成的协程任务列表，pending 为超时未完成的协程任务类别，需通过task.result()方法可以获取每个协程任务返回的结果； 而asyncio.gather 返回的是所有已完成协程任务的 result，不需要再进行调用或其他操作，就可以得到全部结果。 在python3.7之后 利用asyncio.run可以代替上面3步 python中的多线程 1.GIL GIL（全局解释锁）不是python的特性和Lock不是一个层面的概念，在实现Cpython引入的一个概念。具备一定的优势： 1.在单线程任务中更快 2.在多线程任务中，对于I/O密集型程序运行更快。 一定的缺陷：1. 对于CPU密集型任务，需要进行用C语言包来实现。2、使python的多线程并不是真正意义的多线程 补充： 计算密集型：要进行大量的数值计算，例如进行上亿的数字计算、计算圆周率、对视频进行高清解码等等。这种计算密集型任务虽然也可以用多任务完成，但是花费的主要时间在任务切换的时间，此时CPU执行任务的效率比较低。 IO密集型：涉及到网络请求(time.sleep())、磁盘IO的任务都是IO密集型任务，这类任务的特点是CPU消耗很少，任务的大部分时间都在等待IO操作完成（因为IO的速度远远低于CPU和内存的速度）。对于IO密集型任务，任务越多，CPU效率越高，但也有一个限度。 2.GIL的运行过程 线程拿到GIL 执行逻辑代码，达到check_interval* 释放当前线程的GIL 所有线程竞争GIL 竞争到的线程又从第一步开始执行 补充：对于GIL的释放情景。 1.当前线程执行超时，自动释放。 2.当前线程执行阻塞操作时会自动释放。 3.执行完成时释放 3.GIL存在的问题 看似并行，实则不然，根据上述的运行过程可以看出，虽然是多线程但是线程之间的运行仍然是具有先后顺序的，并不是同时进行的。（一个进程中有一把全局解释锁，锁住线程） 可以利用多进程 &#43; 协程来完成相应业务场景 python中的多进程 1. multiprocessing multiprocessing 模块在python中的多进程模块 1.">
@@ -68,7 +68,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">WCG的Blog</a></h1>
+            <h1 class="site-name"><a href="/">WCG-记录代码生活</a></h1>
             <h2 class="site-description">来自一个软件小白的日常记录</h2>
         </div>
     </header><ol class="social-menu">
@@ -553,7 +553,7 @@ map内部调用了submit，通过对submit封装使用起来更方便。map提�
         
             2020 - 
         
-        2023 WCG的Blog
+        2023 WCG-记录代码生活
     </section>
     
     <section class="powerby">
@@ -727,3 +727,4 @@ map内部调用了submit，通过对submit封装使用起来更方便。map提�
 
     </body>
 </html>
+<script async src="https://analytics.umami.is/script.js" data-website-id="5d0108b2-6f30-4233-8565-a236f9c1fa0c"></script>
